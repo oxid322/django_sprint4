@@ -25,8 +25,7 @@ class MyLoginView(LoginView):
 
     def get_success_url(self):
         return reverse('blog:profile',
-                       kwargs={'username':
-                                   self.request.user.username})
+                       kwargs={'username': self.request.user.username})
 
 
 class IndexListView(ListView):
@@ -130,7 +129,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return form
 
     def get_success_url(self):
-        return reverse('blog:profile', kwargs={'username': self.request.user.username})
+        return reverse('blog:profile',
+                       kwargs={'username': self.request.user.username})
 
 
 class ProfileView(ListView):
@@ -180,8 +180,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         form = self.get_form()
         self.request.user.username = form.instance.username
         return reverse('blog:profile',
-                       kwargs={'username':
-                                   self.request.user.username})
+                       kwargs={'username': self.request.user.username})
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
@@ -196,7 +195,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         post = self.get_object()  # Получаем объект поста
-        if post.author != request.user:  # Проверяем, является ли пользователь автором поста
+        if post.author != request.user:
             return redirect('blog:post_detail',
                             pk=post.pk)
         return super().dispatch(request,

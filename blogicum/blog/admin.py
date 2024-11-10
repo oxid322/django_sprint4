@@ -37,9 +37,10 @@ class PostAdmin(admin.ModelAdmin):
     class Meta:
         verbose_name_plural = 'Публикации'
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id','author', 'post', 'text', 'created_at')
+    list_display = ('id', 'author', 'post', 'text', 'created_at')
 
     class Meta:
         verbose_name_plural = 'Комментарии'
