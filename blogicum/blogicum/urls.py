@@ -17,8 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from blog import views as blog_views
 
-
-
 urlpatterns = [
     path('auth/login/',
          blog_views.MyLoginView.as_view(), name='login'),
